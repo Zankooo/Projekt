@@ -2,8 +2,22 @@
 const http = require('http'); // hypertext transfer protocol. Modul importamo da lahko za internet delamo webpage
 const fs = require('fs'); //importamo module; file system
 //pac po tem principu oz po tej sabloni se dela 
+
+const _ = require('lodash'); // imporatmo lodash
+
+
 const server =  http.createServer(function(request, response) { //ustvarimo server s funkcijo create server ki ima dva parametra, zahtevaj in odgovor (request response)
-    console.log(request.url, request.method);
+    
+    //lodash
+    const num = _.random(0,20)
+    console.log(num);
+
+    const greet = _.once(function(){
+        console.log("hello")
+    })
+
+    greet();
+
 
     response.setHeader('Context-type', 'text/plain');
 
@@ -22,7 +36,7 @@ const server =  http.createServer(function(request, response) { //ustvarimo serv
             response.statusCode = 200; //dodamo da se v konzoli v browserju izpise ta cifra
         break;
 
-        case '/about-me' : 
+        case '/about-us' : 
             response.statusCode = 301; //dodamo da se v konzoli v browserju izpise ta cifra
             response.setHeader('Location','/about'); //ce  about-me te vrze na about
             response.end();
